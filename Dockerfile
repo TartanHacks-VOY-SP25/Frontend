@@ -28,7 +28,8 @@ RUN apk update && apk add --no-cache \
     curl \
     git \
     nodejs \
-    npm
+    npm \
+    openssh
 
 # Create and change to the app directory.
 WORKDIR /app
