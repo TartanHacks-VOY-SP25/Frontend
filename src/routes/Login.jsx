@@ -1,42 +1,48 @@
-import { useState } from "react";
-import { Box, Button, Input, FormControl, FormLabel } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import { loginUser } from "../authHelpers/authHelpers";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = async () => {
-        const response = await fetch("http://localhost:8000/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password }),
-            credentials: "include",
-        });
-
-        if (response.ok) {
-            navigate("/dashboard");
-        } else {
-            alert("Login failed");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await loginUser(username, password);
+            navigate("/home"); // Redirect to home after login
+        } catch (error) {
+            alert("Login failed! Check credentials.");
         }
     };
 
     return (
-        <Box p={4}>
-            <FormControl>
-                <FormLabel>Username</FormLabel>
-                <Input value={username} onChange={(e) => setUsername(e.target.value)} />
-            </FormControl>
-            <FormControl mt={4}>
-                <FormLabel>Password</FormLabel>
-                <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </FormControl>
-            <Button mt={4} colorScheme="blue" onClick={handleLogin}>
-                Login
-            </Button>
-        </Box>
+        <div>
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <button type="submit">Login</button>
+            </form>
+
+            {/* Signup Button */}
+            <p>Don't have an account?</p>
+            <button onClick={() => navigate("/signup")}>Sign Up</button>
+        </div>
     );
-}
+};
 
 export default Login;

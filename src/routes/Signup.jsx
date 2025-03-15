@@ -1,41 +1,44 @@
 import { useState } from "react";
-import { Box, Button, Input, FormControl, FormLabel } from "@chakra-ui/react";
+import { signupUser } from "../authHelpers/authHelpers";
 import { useNavigate } from "react-router-dom";
 
-function Signup() {
+const Signup = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleSignup = async () => {
-        const response = await fetch("http://localhost:8000/auth/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password }),
-        });
-
-        if (response.ok) {
-            navigate("/login");
-        } else {
-            alert("Signup failed");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await signupUser(username, password);
+            navigate("/login"); // Redirect to login after signup
+        } catch (error) {
+            alert("Signup failed! Try a different username.");
         }
     };
 
     return (
-        <Box p={4}>
-            <FormControl>
-                <FormLabel>Username</FormLabel>
-                <Input value={username} onChange={(e) => setUsername(e.target.value)} />
-            </FormControl>
-            <FormControl mt={4}>
-                <FormLabel>Password</FormLabel>
-                <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </FormControl>
-            <Button mt={4} colorScheme="blue" onClick={handleSignup}>
-                Sign Up
-            </Button>
-        </Box>
+        <div>
+            <h2>Sign Up</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
     );
-}
+};
 
 export default Signup;
