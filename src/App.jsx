@@ -4,7 +4,7 @@ import './css/App.css';
 import { Grid, GridItem } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import VideoBG from './routes/VideoBG';
-import { getCurrentUser, logoutUser } from './authHelpers/authHelpers'; // Import authentication helpers
+import { getCurrentUser, logoutUser } from './helpers/authHelpers'; // Import authentication helpers
 import { useNavigate } from 'react-router-dom'; // Import navigation hook
 
 function App() {

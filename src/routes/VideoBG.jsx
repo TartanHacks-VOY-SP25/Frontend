@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import videoBG from '../assets/bgVideo.mov';
-import reactLogo from '../assets/logo.png';
+import videoBG from '../assets/bgVideo.mp4';
+import reactLogo from '../assets/homeLogo.png';
 import '../css/App.css';
 import { Grid, GridItem } from '@chakra-ui/react';
 import NavBar from '../components/NavBar';
-import { getCurrentUser, logoutUser } from '../authHelpers/authHelpers'; // Import authentication helpers
+import { getCurrentUser, logoutUser } from '../helpers/authHelpers'; // Import authentication helpers
 import { useNavigate } from 'react-router-dom'; // Import navigation hook
 
 const VideoBG = () => {
@@ -44,6 +44,12 @@ const VideoBG = () => {
                 <Grid templateAreas={`"nav nav" "logo logo"`}>
                     <GridItem area='nav' className='NavBar'>
                         <NavBar />
+                        {user && (
+                            <div>
+                                <h1>Welcome, {user.username}!</h1>
+                                <button onClick={handleLogout}>Logout</button>
+                            </div>
+                        )}
                     </GridItem>
                     <GridItem area='logo' className='logo'>
                         <a target="_blank" rel="noopener noreferrer">
