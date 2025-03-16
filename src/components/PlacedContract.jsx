@@ -4,9 +4,9 @@ import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import '../css/contract.css';
 import AddContract from './AddContract';
 import AcceptContract from './AcceptContract'
-import { getOpenContracts, getContractById } from '../helpers/contractHelpers';
+import { getContractRequests } from '../helpers/contractHelpers';
 
-function Contract() {
+function PlacedContract() {
     const [contracts, setContracts] = useState([]);
     const [expandedCard, setExpandedCard] = useState(null);
 
@@ -14,7 +14,7 @@ function Contract() {
     useEffect(() => {
         const fetchContracts = async () => {
             try {
-                const data = await getOpenContracts();
+                const data = await getContractRequests();
                 setContracts(data);
             } catch (error) {
                 console.error("Error fetching contracts:", error);
@@ -30,7 +30,7 @@ function Contract() {
     return (
         <HStack align="start" spacing={10} p={6}>
             {/* Card Grid */}
-            <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={6}>
+            <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={6}>
                 {contracts.map((contract) => (
                     <div className="container" key={contract.contract_id}>
                         <div className={`card ${expandedCard === contract.contract_id ? "expanded" : ""}`}>
@@ -42,7 +42,7 @@ function Contract() {
                                 </button>
                                 <div className='cardDis'>
                                     <Text fontSize="lg" fontWeight="bold">
-                                        Des: {contract.description}
+                                        Description: {contract.description}
                                     </Text>
                                     <Text fontSize="sm" color="gray.500">
                                         ID: {contract.contract_id}
@@ -76,18 +76,11 @@ function Contract() {
                     </div>
                 ))}
             </SimpleGrid>
-
-            {/* Add New Contract Form */}
-            <VStack flex="1" spacing={0} p={4} borderRadius="lg" boxShadow="md">
-                <AddContract />
-                <AcceptContract />
-            </VStack>
-
         </HStack>
     );
 }
 
-export default Contract;
+export default PlacedContract;
 
 
 

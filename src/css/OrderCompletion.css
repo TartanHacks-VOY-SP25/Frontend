@@ -1,0 +1,124 @@
+/* Login.css */
+
+/*.bgPic {
+    background-image: url("../assets/bgPic.png");
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: 100% auto;
+}*/
+
+.completeContract-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(22, 22, 23);
+}
+
+.completeContract-title {
+    color: white;
+    margin-bottom: 20px;
+    margin-top: -20px;
+    font-size: 30px;
+}
+
+.input-field {
+    border: none;
+    /* Remove border */
+    border-bottom: 2px solid white;
+    /* Add an underline */
+    background-color: transparent;
+    /* Make the input field transparent */
+    padding: 10px;
+    /* Optional: Adjust padding */
+    font-size: 16px;
+    /* Optional: Adjust font size */
+    width: 100%;
+    /* Ensure the input fills the width of the container */
+    box-sizing: border-box;
+    /* Ensure padding and borders don't affect the element's size */
+    outline: none;
+    /* Remove focus outline (can add a custom one if needed) */
+    color: white;
+}
+
+/* Optionally, you can change the underline color on focus */
+.input-field:focus {
+    border-bottom: 2px solid #4f8ef7;
+    /* Change the underline color when focused */
+    box-shadow: 0 0 5px rgba(79, 142, 247, 0.5);
+    /* Optional: Add a box shadow on focus */
+}
+
+/* Optionally, change placeholder text styling */
+.input-field::placeholder {
+    color: white;
+    /* Change placeholder text color */
+    font-style: bold;
+    /* Optional: Add italic style to placeholder text */
+}
+
+.completeContract-card {
+    width: 100%;
+    max-width: 400px;
+    height: 275px;
+    padding: 1.5rem;
+    background-color: #2f2f2e;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    margin-top: 200px;
+}
+
+.completeContract-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    width: 400px;
+}
+
+.completeContract-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.completeContract-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.completeContract-button {
+    background-color: #879A77;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.completeContract-button:hover {
+    background-color: #6b7a5e;
+    transform: translateY(2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.completeContract-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px #505b46;
+}
+
+.completeContract-button:disabled {
+    background-color: #a5b4fc;
+}
